@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="算法,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wikchicken">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最大子数组问题">
+<meta property="og:url" content="http://yoursite.com/2019/09/07/maximum_subarray/index.html">
 <meta property="og:site_name" content="Wikchicken">
+<meta property="og:description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
 <meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-09-08T11:04:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wikchicken">
+<meta name="twitter:title" content="最大子数组问题">
+<meta name="twitter:description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/07/maximum_subarray/">
 
 
 
 
 
-  <title>Wikchicken</title>
+  <title>最大子数组问题 | Wikchicken</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,130 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/07/laozi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wikchicken">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wikchicken">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/07/laozi/" itemprop="url">老子的智慧</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-07T15:05:35+08:00">
-                2019-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>老子云：天下难事，必作于易；天下大事，必作于细。<br>意思是难的事情要从简单的事情做起，大事要从细小的事着手，<br>越是复杂的事情，越是要把小细节做到位。</p>
-<p>老子又云：合抱之木，生于毫末。九层之台，起于累土。千里之行，始于足下。<br>为者败之，执者失之。慎终如始，则无败事。<br>意思是每一个成就都是一步一步完成的，要脚踏实地，保持最初的努力，<br>谨慎认真地完成每一件事，那就不会有什么失败了。·</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -367,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/07/maximum_subarray/" itemprop="url">最大子数组问题</a></h1>
+          <h1 class="post-title" itemprop="name headline">最大子数组问题</h1>
         
 
         <div class="post-meta">
@@ -441,9 +322,7 @@
       
 
       
-        
-          
-            <p>最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),<br>书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。<br>下面分别对这三种解法做下对比。</p>
+        <p>最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),<br>书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。<br>下面分别对这三种解法做下对比。</p>
 <h3 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h3><p>对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。<br>算法复杂度为O(n^2)，遍历数组两次即可，代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (i = 0; i &lt; n; i++&gt;) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -451,8 +330,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = aT(n/b) + f(n)</span><br></pre></td></tr></table></figure>
 
 
-          
-        
       
     </div>
     
@@ -467,134 +344,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/01/20190901/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wikchicken">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wikchicken">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/01/20190901/" itemprop="url">20190901</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-01T15:05:35+08:00">
-                2019-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>My first blog in hexo, next blog will record the build detail.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/01/20190901/" rel="next" title="20190901">
+                <i class="fa fa-chevron-left"></i> 20190901
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/07/laozi/" rel="prev" title="老子的智慧">
+                老子的智慧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -604,10 +387,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -615,6 +399,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -635,8 +423,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -696,6 +493,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力法"><span class="nav-number">1.</span> <span class="nav-text">暴力法</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#分治策略"><span class="nav-number"></span> <span class="nav-text">分治策略</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -829,6 +642,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
