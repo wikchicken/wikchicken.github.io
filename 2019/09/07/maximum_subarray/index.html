@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Wikchicken">
 <meta property="og:description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-08T14:24:01.000Z">
+<meta property="og:updated_time" content="2019-09-10T15:37:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最大子数组问题">
 <meta name="twitter:description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
@@ -344,11 +344,19 @@
       
         <p>最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),<br>书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。<br>下面分别对这三种解法做下对比。</p>
 <h3 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h3><p>对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。<br>算法复杂度为O(n^2)，遍历数组两次即可，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (i = 0; i &lt; n; i++&gt;) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int maxSubArray(int *nums, int numSize)</span><br><span class="line">&#123;</span><br><span class="line">	int max = nums[0];</span><br><span class="line">	for (int i = 0; i &lt; numSize; i++) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">		for (int j = i; j &lt; numSize; j++) &#123;</span><br><span class="line">			sum += nums[j];</span><br><span class="line">			if (sum &gt; max)</span><br><span class="line">				max = sum;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h2><p>分治的思想是将问题分解成独立的子问题，一般来说子问题只是规模变小，但是解法跟原问题一样，<br>通过不断递归将子问题规模降至足够小，最后将子问题的解组合成原问题的解。比较典型的像归并排序算法。<br>分治问题的时间复杂度可以用下面的公式表示，并且可以通过主定理求解。</p>
+<h3 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h3><p>分治的思想是将问题分解成独立的子问题，一般来说子问题只是规模变小，但是解法跟原问题一样，<br>通过不断递归将子问题规模降至足够小，最后将子问题的解组合成原问题的解。比较典型的像归并排序算法。<br>分治问题的时间复杂度可以用下面的公式表示，并且可以通过主定理求解。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = aT(n/b) + f(n)</span><br></pre></td></tr></table></figure>
 
+<p>对于本题可以求出时间复杂度是O(nlgn)，最大子数组可以落在左半区间，右半区间和横跨中点这三种情况，<br>下面是递归的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">int maxCrossMid(int *nums, int left, int right)</span><br><span class="line">&#123;</span><br><span class="line">    int mid = (left + right)/2;</span><br><span class="line">    int max_left = nums[mid];</span><br><span class="line">    int max_right = nums[mid];</span><br><span class="line">    int sum = 0;</span><br><span class="line">    for (int i=mid; i&gt;=left; i--) &#123;</span><br><span class="line">        sum += nums[i];</span><br><span class="line">        if (sum &gt; max_left)</span><br><span class="line">            max_left = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    sum = 0;//restart on right</span><br><span class="line">    for (int j=mid; j&lt;=right; j++) &#123;</span><br><span class="line">        sum += nums[j];</span><br><span class="line">        if (sum &gt; max_right)</span><br><span class="line">            max_right = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    return max_left + max_right - nums[mid];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int maxSubArray(int *nums, int left, int right)</span><br><span class="line">&#123;</span><br><span class="line">    if (left &gt;= right)</span><br><span class="line">        return nums[left];</span><br><span class="line"></span><br><span class="line">    int mid = (left + right) / 2;</span><br><span class="line">    int max1 = maxSubArray(nums, left, mid);</span><br><span class="line">    int max2 = maxSubArray(nums, mid+1, right);</span><br><span class="line">    int max3 = maxCrossMid(nums, left, right);</span><br><span class="line">    return MAX(max1, max2, max3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>动态规划思想一般用来解决最优问题(optimization problem), 跟分治策略相似都是要划分成子问题，<br>不同的是动态规划问题里存在重叠子问题，一般有自底向上或者自顶向下(备忘法)的两种实现方法，<br>通过构造最优子结构，即局部最优解，最终获得全局最优解。<br>总的来说，动态规划问题需要一点技巧去构造子问题，否则即使列出状态转移方程也很难用代码实现。<br>本题中以dp[i]表示以第i个元素结尾(必须包含A[i]) 的最大子数组之和，<br>有dp[i] = max(dp[i-1]+A[i], A[i])，代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int maxSubArray(int *nums, int numsSize)</span><br><span class="line">&#123;</span><br><span class="line">    int max = nums[0];</span><br><span class="line">    int dp = nums[0];</span><br><span class="line">    for(int i=1; i&lt; numsSize; i++) &#123;</span><br><span class="line">        dp = (dp &gt; 0) ? dp + nums[i] : nums[i];</span><br><span class="line">        if (dp &gt; max)</span><br><span class="line">            max = dp;</span><br><span class="line">    &#125;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到动态规划解法的复杂度是O(n)，优于上面两种解法。</p>
+<p>参考：<br>    《算法导论》， <a href="https://leetcode.com/problems/maximum-subarray/discuss/20193/DP-solution-and-some-thoughts" target="_blank" rel="noopener">leetcode</a></p>
 
       
     </div>
@@ -379,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/01/20190901/" rel="next" title="20190901">
-                <i class="fa fa-chevron-left"></i> 20190901
+              <a href="/2019/09/07/laozi/" rel="next" title="老子的智慧">
+                <i class="fa fa-chevron-left"></i> 老子的智慧
               </a>
             
           </div>
@@ -388,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/07/laozi/" rel="prev" title="老子的智慧">
-                老子的智慧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -523,7 +527,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力法"><span class="nav-number">1.</span> <span class="nav-text">暴力法</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#分治策略"><span class="nav-number"></span> <span class="nav-text">分治策略</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力法"><span class="nav-number">1.</span> <span class="nav-text">暴力法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分治策略"><span class="nav-number">2.</span> <span class="nav-text">分治策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">3.</span> <span class="nav-text">动态规划</span></a></li></ol></div>
             
 
           </div>
