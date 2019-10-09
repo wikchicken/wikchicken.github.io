@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="动态规划,">
+  <meta name="keywords" content="虚拟内存,页表,">
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
-<meta name="keywords" content="动态规划">
+<meta name="description" content="虚拟内存虚拟内存是计算机中最重要的概念之一，它可以看作是对实际物理内存的一层抽象。虚拟内存的提出主要解决两个问题，一是避免直接对物理内存寻址和操作引发的风险，引入地址空间的概念，通过将虚拟地址空间和物理地址空间映射起来，保证每个进程地址空间的独立；二是通过分页的技术，某一时刻只将必要的页面换入内存，使得越来越大的程序在内存中执行成为可能，解决了程序大于内存的问题。当然，虚拟内存还提供其他的能力，后">
+<meta name="keywords" content="虚拟内存,页表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最大子数组问题">
-<meta property="og:url" content="http://yoursite.com/2019/09/07/maximum_subarray/index.html">
+<meta property="og:title" content="虚拟内存和页表">
+<meta property="og:url" content="http://yoursite.com/2019/09/14/pt/index.html">
 <meta property="og:site_name" content="Wikchicken">
-<meta property="og:description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
+<meta property="og:description" content="虚拟内存虚拟内存是计算机中最重要的概念之一，它可以看作是对实际物理内存的一层抽象。虚拟内存的提出主要解决两个问题，一是避免直接对物理内存寻址和操作引发的风险，引入地址空间的概念，通过将虚拟地址空间和物理地址空间映射起来，保证每个进程地址空间的独立；二是通过分页的技术，某一时刻只将必要的页面换入内存，使得越来越大的程序在内存中执行成为可能，解决了程序大于内存的问题。当然，虚拟内存还提供其他的能力，后">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-10T15:37:40.000Z">
+<meta property="og:image" content="http://yoursite.com/images/pt1.png">
+<meta property="og:image" content="http://yoursite.com/images/pt2.png">
+<meta property="og:updated_time" content="2019-09-15T13:06:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最大子数组问题">
-<meta name="twitter:description" content="最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。下面分别对这三种解法做下对比。 暴力法对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。算法复杂度为O(n^2)，遍历数组两次即可，代码">
+<meta name="twitter:title" content="虚拟内存和页表">
+<meta name="twitter:description" content="虚拟内存虚拟内存是计算机中最重要的概念之一，它可以看作是对实际物理内存的一层抽象。虚拟内存的提出主要解决两个问题，一是避免直接对物理内存寻址和操作引发的风险，引入地址空间的概念，通过将虚拟地址空间和物理地址空间映射起来，保证每个进程地址空间的独立；二是通过分页的技术，某一时刻只将必要的页面换入内存，使得越来越大的程序在内存中执行成为可能，解决了程序大于内存的问题。当然，虚拟内存还提供其他的能力，后">
+<meta name="twitter:image" content="http://yoursite.com/images/pt1.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/07/maximum_subarray/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/14/pt/">
 
 
 
 
 
-  <title>最大子数组问题 | Wikchicken</title>
+  <title>虚拟内存和页表 | Wikchicken</title>
   
 
 
@@ -253,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/07/maximum_subarray/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/pt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wikchicken">
@@ -270,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">最大子数组问题</h1>
+          <h1 class="post-title" itemprop="name headline">虚拟内存和页表</h1>
         
 
         <div class="post-meta">
@@ -282,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-07T15:05:35+08:00">
-                2019-09-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T21:49:07+08:00">
+                2019-09-14
               </time>
             
 
@@ -305,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
                   </a>
                 </span>
 
@@ -342,22 +345,15 @@
       
 
       
-        <p>最大子数组问题是算法导论里的例子，出现在分治策略一节，分治即所谓的分而治之(divide and conquer),<br>书中分别介绍了暴力法和分治法，并在后面习题中提出了线性时间的解法，即动态规划的思想。<br>下面分别对这三种解法做下对比。</p>
-<h3 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h3><p>对于这样一个数组{1, 2, -3, 4, 0, 5, -3}，求最大连续子数组，可以通过找出所有的子数组的集合。<br>算法复杂度为O(n^2)，遍历数组两次即可，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int maxSubArray(int *nums, int numSize)</span><br><span class="line">&#123;</span><br><span class="line">	int max = nums[0];</span><br><span class="line">	for (int i = 0; i &lt; numSize; i++) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">		for (int j = i; j &lt; numSize; j++) &#123;</span><br><span class="line">			sum += nums[j];</span><br><span class="line">			if (sum &gt; max)</span><br><span class="line">				max = sum;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="分治策略"><a href="#分治策略" class="headerlink" title="分治策略"></a>分治策略</h3><p>分治的思想是将问题分解成独立的子问题，一般来说子问题只是规模变小，但是解法跟原问题一样，<br>通过不断递归将子问题规模降至足够小，最后将子问题的解组合成原问题的解。比较典型的像归并排序算法。<br>分治问题的时间复杂度可以用下面的公式表示，并且可以通过主定理求解。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = aT(n/b) + f(n)</span><br></pre></td></tr></table></figure>
-
-<p>对于本题可以求出时间复杂度是O(nlgn)，最大子数组可以落在左半区间，右半区间和横跨中点这三种情况，<br>下面是递归的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">int maxCrossMid(int *nums, int left, int right)</span><br><span class="line">&#123;</span><br><span class="line">    int mid = (left + right)/2;</span><br><span class="line">    int max_left = nums[mid];</span><br><span class="line">    int max_right = nums[mid];</span><br><span class="line">    int sum = 0;</span><br><span class="line">    for (int i=mid; i&gt;=left; i--) &#123;</span><br><span class="line">        sum += nums[i];</span><br><span class="line">        if (sum &gt; max_left)</span><br><span class="line">            max_left = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    sum = 0;//restart on right</span><br><span class="line">    for (int j=mid; j&lt;=right; j++) &#123;</span><br><span class="line">        sum += nums[j];</span><br><span class="line">        if (sum &gt; max_right)</span><br><span class="line">            max_right = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    return max_left + max_right - nums[mid];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int maxSubArray(int *nums, int left, int right)</span><br><span class="line">&#123;</span><br><span class="line">    if (left &gt;= right)</span><br><span class="line">        return nums[left];</span><br><span class="line"></span><br><span class="line">    int mid = (left + right) / 2;</span><br><span class="line">    int max1 = maxSubArray(nums, left, mid);</span><br><span class="line">    int max2 = maxSubArray(nums, mid+1, right);</span><br><span class="line">    int max3 = maxCrossMid(nums, left, right);</span><br><span class="line">    return MAX(max1, max2, max3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>动态规划思想一般用来解决最优问题(optimization problem), 跟分治策略相似都是要划分成子问题，<br>不同的是动态规划问题里存在重叠子问题，一般有自底向上或者自顶向下(备忘法)的两种实现方法，<br>通过构造最优子结构，即局部最优解，最终获得全局最优解。<br>总的来说，动态规划问题需要一点技巧去构造子问题，否则即使列出状态转移方程也很难用代码实现。<br>本题中以dp[i]表示以第i个元素结尾(必须包含A[i]) 的最大子数组之和，<br>有dp[i] = max(dp[i-1]+A[i], A[i])，代码如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int maxSubArray(int *nums, int numsSize)</span><br><span class="line">&#123;</span><br><span class="line">    int max = nums[0];</span><br><span class="line">    int dp = nums[0];</span><br><span class="line">    for(int i=1; i&lt; numsSize; i++) &#123;</span><br><span class="line">        dp = (dp &gt; 0) ? dp + nums[i] : nums[i];</span><br><span class="line">        if (dp &gt; max)</span><br><span class="line">            max = dp;</span><br><span class="line">    &#125;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到动态规划解法的复杂度是O(n)，优于上面两种解法。</p>
-<p>参考：<br>    《算法导论》， <a href="https://leetcode.com/problems/maximum-subarray/discuss/20193/DP-solution-and-some-thoughts" target="_blank" rel="noopener">leetcode</a></p>
-
+        <h2 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h2><p>虚拟内存是计算机中最重要的概念之一，它可以看作是对实际物理内存的一层抽象。<br>虚拟内存的提出主要解决两个问题，一是避免直接对物理内存寻址和操作引发的风险，引入地址<br>空间的概念，通过将虚拟地址空间和物理地址空间映射起来，保证每个进程地址空间的独立；<br>二是通过分页的技术，某一时刻只将必要的页面换入内存，使得越来越大的程序在内存中执行<br>成为可能，解决了程序大于内存的问题。当然，虚拟内存还提供其他的能力，后面会在页表<br>的介绍中附带讲解。</p>
+<h2 id="页表"><a href="#页表" class="headerlink" title="页表"></a>页表</h2><p>虚拟地址空间按照固定大小将划分为页面（virtual page, VP），物理内存对应划分的单元叫页框<br>（page frame或PP），物理内存可以看作是磁盘的一层缓存，当CPU访问虚拟地址时，最终需要访问<br>实际的物理内存中数据，那么从虚拟地址如何找到对应的物理地址呢？这就需要软硬件协同处理，<br>硬件主要是MMU单元，软件就是页表，下图展示了MMU如何利用页表来实现地址转换。</p>
+<p><img src="/images/pt1.png" alt title="图1 使用页表的地址翻译"></p>
+<p>当上下文切换完成，页表基址寄存器（PTBR）指向当前进程的页表首地址，虚拟地址的高n-p位作为<br>页表的索引项，从而找到对应页表条目（PTE），如果对应页面在内存或cache中，那么可以根据物理页号<br>直接命中，物理页号加上页偏移量（虚拟地址和物理地址的偏移量相同）组成物理地址，MMU根据组装好<br>的物理地址访问内存或cache。</p>
+<p>当访问的页面不在物理内存中时，会触发一次缺页异常（page fault），图2展示一次缺页异常过程。</p>
+<p><img src="/images/pt2.png" alt title="图2 缺页"><br>当PTE中有效位是零时，表示对应页面存在磁盘中，MMU会触发一次异常，由操作系统内核异常处理程序<br>接管，内核的要做的是找到选择一个页面换出去，如果是脏页还要写回磁盘；然后根据PTE中磁盘地址<br>找到要换入的页面，并更新内存中的PTE；异常处理程序退出回到之前的进程中，CPU会再次执行引起<br>缺页异常的那条指令，显然后面cache会命中。</p>
+<p>页表是常驻内存的，当需要翻译虚拟地址时需要去访问内存中PTE，当然在L1/L2/L3 cache中如果找到<br>对应的PTE显然效率会高一些，不过为了较少这部分性能开销，人们在MMU中增加了专门缓存PTE的结构。</p>
+<h2 id="TLB"><a href="#TLB" class="headerlink" title="TLB"></a>TLB</h2><p>由于翻译虚拟地址需要多次访问内存，有一定的性能开销，为了试图消除这种开销，人们在MMU中引入<br>一级缓存（计算机体系中cache无处不在），专门存储PTE数据，称为翻译后备缓冲器（TLB）。</p>
+<h2 id="多级页表"><a href="#多级页表" class="headerlink" title="多级页表"></a>多级页表</h2><h2 id="倒排页表"><a href="#倒排页表" class="headerlink" title="倒排页表"></a>倒排页表</h2>
       
     </div>
     
@@ -374,7 +370,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+            <a href="/tags/虚拟内存/" rel="tag"># 虚拟内存</a>
+          
+            <a href="/tags/页表/" rel="tag"># 页表</a>
           
         </div>
       
@@ -387,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/07/laozi/" rel="next" title="老子的智慧">
-                <i class="fa fa-chevron-left"></i> 老子的智慧
+              <a href="/2019/09/11/lcs/" rel="next" title="最长公共子序列">
+                <i class="fa fa-chevron-left"></i> 最长公共子序列
               </a>
             
           </div>
@@ -397,8 +395,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/11/lcs/" rel="prev" title="最长公共子序列">
-                最长公共子序列 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/15/optimal-bst/" rel="prev" title="最优二叉搜索树">
+                最优二叉搜索树 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -531,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力法"><span class="nav-number">1.</span> <span class="nav-text">暴力法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分治策略"><span class="nav-number">2.</span> <span class="nav-text">分治策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">3.</span> <span class="nav-text">动态规划</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟内存"><span class="nav-number">1.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页表"><span class="nav-number">2.</span> <span class="nav-text">页表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TLB"><span class="nav-number">3.</span> <span class="nav-text">TLB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多级页表"><span class="nav-number">4.</span> <span class="nav-text">多级页表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#倒排页表"><span class="nav-number">5.</span> <span class="nav-text">倒排页表</span></a></li></ol></div>
             
 
           </div>
